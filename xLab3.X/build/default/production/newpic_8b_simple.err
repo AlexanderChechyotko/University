@@ -1,7 +1,7 @@
-Message[303] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 2 : Program word too large.  Truncated to core size. (FF18)
-Warning[207] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 8 : Found label after column 1. (L1)
-Warning[207] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 9 : Found label after column 1. (L2)
-Warning[207] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 47 : Found label after column 1. (LOOP2)
-Warning[202] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 48 : Argument out of range.  Least significant bits used.
-Warning[207] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 50 : Found label after column 1. (LOOP1)
-Message[303] D:\EDU\UNIVERSITY\SEM_POSLEDNIY\POVS\POVS1\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 56 : Program word too large.  Truncated to core size. (FF18)
+Message[303] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 2 : Program word too large.  Truncated to core size. (FF18)
+Message[305] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 25 : Using default destination of 1 (file).
+Message[305] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 26 : Using default destination of 1 (file).
+Warning[207] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 79 : Found label after column 1. (LOOP2)
+Warning[202] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 80 : Argument out of range.  Least significant bits used.
+Warning[207] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 82 : Found label after column 1. (LOOP1)
+Message[303] E:\UNIVERSITY\XLAB3.X\NEWPIC_8B_SIMPLE.ASM 88 : Program word too large.  Truncated to core size. (FF18)
