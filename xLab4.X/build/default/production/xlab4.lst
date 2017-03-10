@@ -1,0 +1,100 @@
+MPASM 5.71                         XLAB4.ASM   3-10-2017  4:21:00         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         LIST    p=16F84A
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+2007   3F18           00002         __CONFIG        03FF18
+  00000003            00003 status  equ     03h
+  00000006            00004 portb   equ     06h
+  00000006            00005 trisb   equ     06h
+  00000009            00006 max     set     9
+  0000000A            00007 d_number        equ     0Ah
+  00000009            00008 counter equ     09h
+  00000019            00009 tmp     equ     19h
+                      00010         org 0
+0000   0199           00011         clrf    tmp
+0001   0186           00012         clrf    portb
+0002   1683           00013         bsf     status,5
+0003   1286           00014         bcf     trisb,5
+0004   1006           00015         bcf     trisb,0
+0005   1086           00016         bcf     trisb,1
+0006   1106           00017         bcf     trisb,2
+0007   1186           00018         bcf     trisb,3
+0008   1206           00019         bcf     trisb,4
+0009   1283           00020         bcf     status,5
+000A   1406           00021         bsf     portb,0
+000B                  00022 begin
+000B   1806           00023 m1      btfsc       portb,0  
+000C   2???           00024         goto        m1 
+000D   1C06           00025 m2      btfss       portb,0
+000E   2???           00026         goto    m2
+Message[305]: Using default destination of 1 (file).
+000F   0A89           00027         incf    counter
+0010   1003           00028         bcf     status,0
+0011   0D09           00029         rlf     counter,0
+0012   008A           00030         movwf   d_number
+0013   1809           00031         btfsc   counter,0
+0014   2???           00032         goto    switchon
+0015   2???           00033         goto    switchoff
+                      00034 
+0016                  00035 switchon        
+0016   1699           00036         bsf     tmp,5
+0017   1419           00037         bsf     tmp,0
+0018   2???           00038         goto    display
+0019                  00039 switchoff       
+0019   1299           00040         bcf     tmp,5
+001A   1419           00041         bsf     tmp,0
+001B   2???           00042         goto    display
+001C                  00043 display
+001C   1003           00044         bcf     status,0
+001D   0809           00045         movf    counter,0
+001E   3C09           00046         sublw   max
+001F   1C03           00047         btfss   status,0
+0020   2???           00048         goto    clear
+0021   0819           00049         movf    tmp,0
+0022   070A           00050         addwf   d_number,0
+0023   0086           00051         movwf   portb
+MPASM 5.71                         XLAB4.ASM   3-10-2017  4:21:00         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0024   2???           00052         goto    begin
+0025                  00053 clear
+0025   0189           00054         clrf    counter
+0026   3021           00055         movlw   b'00100001'
+0027   0086           00056         movwf   portb
+0028   2???           00057         goto    begin
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+3F18                  00058         end
+MPASM 5.71                         XLAB4.ASM   3-10-2017  4:21:00         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16F84A                          00000001
+begin                             0000000B
+clear                             00000025
+counter                           00000009
+d_number                          0000000A
+display                           0000001C
+m1                                0000000B
+m2                                0000000D
+max                               00000009
+portb                             00000006
+status                            00000003
+switchoff                         00000019
+switchon                          00000016
+tmp                               00000019
+trisb                             00000006
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+

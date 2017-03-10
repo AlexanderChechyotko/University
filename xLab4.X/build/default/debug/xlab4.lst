@@ -1,0 +1,97 @@
+MPASM 5.71                         XLAB4.ASM   3-10-2017  4:15:39         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         LIST    p=16F84A
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+2007   3F18           00002         __CONFIG        03FF18
+  00000003            00003 status  equ     03h
+  00000006            00004 portb   equ     06h
+  00000006            00005 trisb   equ     06h
+  00000009            00006 max     set     9
+  0000000A            00007 d_number        equ     0Ah
+  00000009            00008 counter equ     09h
+  00000019            00009 tmp     equ     19h
+                      00010         org 0
+0000   0199           00011         clrf    tmp
+0001   0186           00012         clrf    portb
+0002   1683           00013         bsf     status,5
+0003   1286           00014         bcf     trisb,5
+0004   1006           00015         bcf     trisb,0
+0005   1086           00016         bcf     trisb,1
+0006   1106           00017         bcf     trisb,2
+0007   1186           00018         bcf     trisb,3
+0008   1206           00019         bcf     trisb,4
+0009   1283           00020         bcf     status,5
+000A   1406           00021         bsf     portb,0
+                      00022 
+000B   0189           00023 init    clrf    counter
+000C                  00024 begin
+                      00025 ;m1     btfsc       portb,0  
+                      00026 ;       goto        m1 
+                      00027 ;m2     btfss       portb,0
+                      00028 ;       goto    m2
+Message[305]: Using default destination of 1 (file).
+000C   0A89           00029         incf    counter
+000D   1003           00030         bcf     status,0
+000E   0D09           00031         rlf     counter,0
+000F   008A           00032         movwf   d_number
+0010   1809           00033         btfsc   counter,0
+0011   2???           00034         goto    switchon
+0012   2???           00035         goto    switchoff
+                      00036 
+0013                  00037 switchon        
+0013   1699           00038         bsf     tmp,5
+0014   1419           00039         bsf     tmp,0
+0015   2???           00040         goto    display
+0016                  00041 switchoff       
+0016   1299           00042         bcf     tmp,5
+0017   1419           00043         bsf     tmp,0
+0018   2???           00044         goto    display
+0019                  00045 display
+0019   1003           00046         bcf     status,0
+001A   0809           00047         movf    counter,0
+001B   3C09           00048         sublw   max
+001C   1C03           00049         btfss   status,0
+001D   2???           00050         goto    init
+001E   0819           00051         movf    tmp,0
+MPASM 5.71                         XLAB4.ASM   3-10-2017  4:15:39         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001F   070A           00052         addwf   d_number,0
+0020   0086           00053         movwf   portb
+0021   2???           00054         goto    begin
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+3F18                  00055         end
+MPASM 5.71                         XLAB4.ASM   3-10-2017  4:15:39         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16F84A                          00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+begin                             0000000C
+counter                           00000009
+d_number                          0000000A
+display                           00000019
+init                              0000000B
+max                               00000009
+portb                             00000006
+status                            00000003
+switchoff                         00000016
+switchon                          00000013
+tmp                               00000019
+trisb                             00000006
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+

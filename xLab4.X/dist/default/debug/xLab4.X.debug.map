@@ -1,0 +1,42 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Fri Mar 10 04:15:40 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000044
+                   .cinit    romdata   0x000022    program   0x000004
+.config_2007_BUILD/DEFAULT/DEBUG/XLAB4.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000023      
+                            0x002007    0x002007      
+            37 out of 1094 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    begin   0x00000c    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                  display   0x000019    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                     init   0x00000b    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                switchoff   0x000016    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                 switchon   0x000013    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     init   0x00000b    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                    begin   0x00000c    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                 switchon   0x000013    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                switchoff   0x000016    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+                  display   0x000019    program     static D:\EDU\University\sem_posledniy\POVS\povs1\xLab4.X\xlab4.asm
+
+

@@ -1,0 +1,43 @@
+MPASM 5.71                           LB3.ASM   3-8-2017  17:34:09         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         LIST    p=16F84A
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+2007   3F18           00002         __CONFIG        03FF18
+  00000003            00003 status  equ     03h
+  00000006            00004 portb   equ     06h
+  00000006            00005 trisb   equ     06h
+  00000001            00006 value   set     b'00000001'
+                      00007         org 0
+0000   1683           00008         bsf     status,5
+0001   1006           00009         bcf     trisb,0
+0002   1086           00010         bcf     trisb,1
+0003   1106           00011         bcf     trisb,2
+0004   1186           00012         bcf     trisb,3
+0005   1283           00013         bcf     status,5
+                      00014 
+0006   0801           00015         movf    value,0
+0007   0086           00016         movwf   portb
+                      00017 
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+3F18                  00018         end
+MPASM 5.71                           LB3.ASM   3-8-2017  17:34:09         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16F84A                          00000001
+portb                             00000006
+status                            00000003
+trisb                             00000006
+value                             00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+
