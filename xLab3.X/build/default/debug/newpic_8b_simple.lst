@@ -1,4 +1,4 @@
-MPASM 5.71              NEWPIC_8B_SIMPLE.ASM   3-10-2017  2:38:08         PAGE  1
+MPASM 5.71              NEWPIC_8B_SIMPLE.ASM   3-10-2017  22:12:37         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -12,68 +12,110 @@ Message[303]: Program word too large.  Truncated to core size. (FF18)
   00000006            00005 trisb   equ     06h
   0000002F            00006 value   equ     0x2F
   00000010            00007 n       set     b'00010000'
-Warning[207]: Found label after column 1. (L1)
-  00000014            00008  L1        EQU 0X14
-Warning[207]: Found label after column 1. (L2)
-  00000015            00009  L2         EQU 0X15
-                      00010 
-                      00011         org 0
-0000   0186           00012         clrf    portb
-0001   1683           00013         bsf     status,5
-0002   0186           00014         clrf    trisb
-0003   1283           00015         bcf     status,5
-0004                  00016 init:
-0004   3001           00017         movlw   0x1
-0005   00AF           00018         movwf   value
-0006                  00019 loop1:
-0006   2???           00020         call    delay
-0007   082F           00021         movf    value,0
-0008   0086           00022         movwf   portb
-0009   1003           00023         bcf     status,0
-000A   0DAF           00024         rlf     value,1
-000B   1103           00025         bcf     status,2
-000C   082F           00026         movf    value,0
-000D   3C10           00027         sublw   n
-000E   1D03           00028         btfss   status,2
-000F   2???           00029         goto    loop1
-0010                  00030 loop2:
-0010   2???           00031         call    delay
-0011   082F           00032         movf    value,0
-0012   0086           00033         movwf   portb
-0013   1003           00034         bcf     status,0
-0014   0CAF           00035         rrf     value,1
-0015   1103           00036         bcf     status,2
-0016   082F           00037         movf    value,0
-0017   3C00           00038         sublw   0
-0018   1D03           00039         btfss   status,2
-0019   2???           00040         goto    loop2
-001A   2???           00041         goto    init
-                      00042 
-001B                  00043 delay:
-                      00044                                  ; Time Delay Routines
-001B   3050           00045      MOVLW 50                        ; Copy 50 to W
-001C   0095           00046      MOVWF L2                    ; Copy W into L2
-Warning[207]: Found label after column 1. (LOOP2)
-001D                  00047  LOOP2
-Warning[202]: Argument out of range.  Least significant bits used.
-001D   3055           00048      MOVLW 255                   ; Copy 255 into W
-MPASM 5.71              NEWPIC_8B_SIMPLE.ASM   3-10-2017  2:38:08         PAGE  2
+  00000009            00008 flag    equ     0x09
+  00000014            00009 L1      EQU     0X14
+  00000015            00010 L2      EQU     0X15
+                      00011 
+                      00012         org 0
+0000   0186           00013         clrf    portb
+0001   1683           00014         bsf     status,5
+0002   0186           00015         clrf    trisb
+0003   1283           00016         bcf     status,5
+0004   1786           00017         bsf     portb,7
+0005   3000           00018         movlw   0
+0006   0089           00019         movwf   flag
+0007   3001           00020         movlw   1
+0008   00AF           00021         movwf   value
+                      00022 
+0009   1B86           00023 click   btfsc       portb,7
+000A   2???           00024         goto        continue 
+000B   2???           00025         goto    change
+000C                  00026 change
+                      00027 ;m2     btfss       portb,7
+                      00028 ;       goto    m2
+000C   1C09           00029         btfss   flag,0
+Message[305]: Using default destination of 1 (file).
+000D   0A89           00030         incf    flag
+Message[305]: Using default destination of 1 (file).
+000E   0389           00031         decf    flag
+000F   1786           00032         bsf     portb,7
+                      00033 
+0010                  00034 continue:
+0010   1809           00035         btfsc   flag,0
+0011   2???           00036         goto    loop_right
+0012   2???           00037         goto    loop_left
+                      00038 
+0013                  00039 loop_right:
+                      00040         ;call   delay
+0013   082F           00041         movf    value,0
+0014   0086           00042         movwf   portb
+0015   1003           00043         bcf     status,0
+0016   1386           00044         bcf     portb,7
+0017   0DAF           00045         rlf     value,1
+0018   1786           00046         bsf     portb,7
+0019   1103           00047         bcf     status,2
+001A   082F           00048         movf    value,0
+001B   3C10           00049         sublw   n
+001C   1D03           00050         btfss   status,2
+MPASM 5.71              NEWPIC_8B_SIMPLE.ASM   3-10-2017  22:12:37         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-001E   0094           00049      MOVWF L1                    ; Copy W into L1
+001D   2???           00051         goto    click
+001E   2???           00052         goto    init_start
+001F                  00053 loop_left:
+                      00054         ;call   delay
+001F   082F           00055         movf    value,0
+0020   0086           00056         movwf   portb
+0021   1003           00057         bcf     status,0
+0022   1386           00058         bcf     portb,7
+0023   0CAF           00059         rrf     value,1
+                      00060         ;bsf    portb,7
+0024   1103           00061         bcf     status,2
+0025   082F           00062         movf    value,0
+0026   3C00           00063         sublw   0
+0027   1D03           00064         btfss   status,2
+0028   2???           00065         goto    click
+0029   2???           00066         goto    init_end
+                      00067 
+                      00068 
+002A                  00069 init_start
+002A   3001           00070         movlw   1
+002B   00AF           00071         movwf   value
+002C   2???           00072         goto    loop_right
+002D                  00073 init_end
+002D   3008           00074         movlw   b'00001000'
+002E   00AF           00075         movwf   value
+002F   2???           00076         goto    loop_left
+                      00077 
+                      00078 
+                      00079 
+                      00080 
+                      00081 
+                      00082 
+                      00083 
+                      00084 
+0030                  00085 delay:
+                      00086                                  
+0030   3050           00087      MOVLW 50                       
+0031   0095           00088      MOVWF L2                    
+Warning[207]: Found label after column 1. (LOOP2)
+0032                  00089  LOOP2
+Warning[202]: Argument out of range.  Least significant bits used.
+0032   3055           00090      MOVLW 255                  
+0033   0094           00091      MOVWF L1                    
 Warning[207]: Found label after column 1. (LOOP1)
-001F                  00050  LOOP1
-001F   0B94           00051      decfsz L1,F                    ; Decrement L1. If 0 Skip next instruction
-0020   2???           00052          GOTO LOOP1                ; ELSE Keep counting down
-0021   0B95           00053      decfsz L2,F                    ; Decrement L2. If 0 Skip next instruction
-0022   2???           00054          GOTO LOOP2                ; ELSE Keep counting down
-0023   0008           00055      Return
+0034                  00092  LOOP1
+0034   0B94           00093      decfsz L1,F                    
+0035   2???           00094          GOTO LOOP1                
+0036   0B95           00095      decfsz L2,F                    
+0037   2???           00096          GOTO LOOP2                
+0038   0008           00097      Return
 Message[303]: Program word too large.  Truncated to core size. (FF18)
-3F18                  00056         end
-MPASM 5.71              NEWPIC_8B_SIMPLE.ASM   3-10-2017  2:38:08         PAGE  3
+3F18                  00098         end
+MPASM 5.71              NEWPIC_8B_SIMPLE.ASM   3-10-2017  22:12:37         PAGE  3
 
 
 SYMBOL TABLE
@@ -81,15 +123,20 @@ SYMBOL TABLE
 
 L1                                00000014
 L2                                00000015
-LOOP1                             0000001F
-LOOP2                             0000001D
+LOOP1                             00000034
+LOOP2                             00000032
 __16F84A                          00000001
 __DEBUG                           
 __MPLAB_DEBUGGER_SIMULATOR        1
-delay                             0000001B
-init                              00000004
-loop1                             00000006
-loop2                             00000010
+change                            0000000C
+click                             00000009
+continue                          00000010
+delay                             00000030
+flag                              00000009
+init_end                          0000002D
+init_start                        0000002A
+loop_left                         0000001F
+loop_right                        00000013
 n                                 00000010
 portb                             00000006
 status                            00000003
@@ -97,7 +144,7 @@ trisb                             00000006
 value                             0000002F
 
 Errors   :     0
-Warnings :     5 reported,     0 suppressed
-Messages :     2 reported,     0 suppressed
+Warnings :     3 reported,     0 suppressed
+Messages :     4 reported,     0 suppressed
 
 

@@ -15,54 +15,63 @@ L2	EQU	0X15
 	clrf	trisb
 	bcf	status,5
 	bsf	portb,7
+	movlw	1
+	movwf	flag
+	movlw	1
+	movwf	value
 
 click	btfsc       portb,7
 	goto        continue 
 	goto	change
 change
-	btfsc	flag,0
+m2	btfss       portb,7
+	goto	m2
 	incf	flag
-	decf	flag
-
 	bsf	portb,7
 
 continue:
-	btfss	flag,0
+	btfsc	flag,0
 	goto	loop_right
 	goto	loop_left
-init:
-	movlw	1
-	movwf	value
-	movlw	1
-	movwf	flag
+
 loop_right:
 	call	delay
 	movf	value,0
 	movwf	portb
 	bcf	status,0
+	bcf	portb,7
 	rlf	value,1
+	bsf	portb,7
 	bcf	status,2
 	movf	value,0
 	sublw	n
 	btfss	status,2
-	goto	loop_right
-	goto	init
+	goto	click
+	goto	init_start
 loop_left:
 	call	delay
 	movf	value,0
 	movwf	portb
 	bcf	status,0
+	bcf	portb,7
 	rrf	value,1
+	bsf	portb,7
 	bcf	status,2
 	movf	value,0
 	sublw	0
 	btfss	status,2
+	goto	click
+	goto	init_end
+
+
+init_start
+	movlw	1
+	movwf	value
+	goto	loop_right
+init_end
+	movlw	b'10001000'
+	movwf	value
 	goto	loop_left
-	goto	init
-
-
-
-
 
 
 
