@@ -1,0 +1,25 @@
+MPASM 5.71                           LB6.ASM   3-12-2017  13:34:16         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         LIST    p=16F84A
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+2007   3F18           00002         __CONFIG        03FF18
+                      00003         org 0
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+3F18                  00004         end
+MPASM 5.71                           LB6.ASM   3-12-2017  13:34:16         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16F84A                          00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

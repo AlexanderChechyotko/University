@@ -1,0 +1,4 @@
+	LIST	p=16F84A
+	__CONFIG	03FF18
+	org 0
+	end
