@@ -1,4 +1,4 @@
-MPASM 5.71                           LB6.ASM   3-12-2017  14:06:26         PAGE  1
+MPASM 5.71                           LB6.ASM   3-12-2017  13:58:07         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
                       00049 
 001A   300B           00050         movlw   .11
 001B   0085           00051         movwf   porta
-MPASM 5.71                           LB6.ASM   3-12-2017  14:06:26         PAGE  2
+MPASM 5.71                           LB6.ASM   3-12-2017  13:58:07         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00102                 
 003E   1B06           00103 Check13 btfsc   portb,6
 003F   2???           00104         goto    Column1
-MPASM 5.71                           LB6.ASM   3-12-2017  14:06:26         PAGE  3
+MPASM 5.71                           LB6.ASM   3-12-2017  13:58:07         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -130,7 +130,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00110 
 Message[303]: Program word too large.  Truncated to core size. (FF18)
 3F18                  00111         end
-MPASM 5.71                           LB6.ASM   3-12-2017  14:06:26         PAGE  4
+MPASM 5.71                           LB6.ASM   3-12-2017  13:58:07         PAGE  4
 
 
 SYMBOL TABLE
@@ -154,6 +154,8 @@ Column3                           0000002F
 OPTION_REG                        00000081
 Start                             00000000
 __16F84A                          00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
 porta                             00000005
 portb                             00000006
 status                            00000003
