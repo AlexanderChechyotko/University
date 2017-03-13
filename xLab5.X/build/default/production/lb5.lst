@@ -1,0 +1,168 @@
+MPASM 5.71                           LB5.ASM   3-13-2017  19:16:37         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         LIST    p=16F84A
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+2007   3F18           00002         __CONFIG        03FF18
+Warning[205]: Found directive in column 1. (cblock)
+                      00003 cblock  0x20
+  00000020            00004         count                   ; counter, used in reading bits from shift register loop
+  00000021            00005         shifting_value          ; the temporary variable, used to insert values into PORTB
+                      00006         ; Crazy counts used in Delay procedure
+  00000022            00007         count1
+  00000023            00008         counta
+  00000024            00009         countb
+Warning[205]: Found directive in column 1. (ENDC)
+                      00010 endc
+                      00011 
+  00000004            00012 trisa_all       set 0x04        ; (0000 0100)
+  00000000            00013 trisb_all       set 0x00
+  00000040            00014 init_shift_val  set 0x40        ; (0100 0000)
+                      00015 
+                      00016 RST   code      0x00 
+0000   2???           00017       goto      Start
+                      00018 
+                      00019 PGM   code
+0000                  00020 Start           
+Error[113]  : Symbol not previously defined (STATUS)
+Error[113]  : Symbol not previously defined (RP0)
+0000   1400           00021       bsf       STATUS, RP0
+0001   3004           00022       movlw     trisa_all
+Error[113]  : Symbol not previously defined (TRISA)
+0002   0080           00023       movwf     TRISA
+0003   3000           00024       movlw     trisb_all
+Error[113]  : Symbol not previously defined (TRISB)
+0004   0080           00025       movwf     TRISB
+Error[113]  : Symbol not previously defined (STATUS)
+Error[113]  : Symbol not previously defined (RP0)
+0005   1000           00026       bcf       STATUS, RP0
+0006                  00027 START_READ:
+0006   01A0           00028       clrf      count
+Error[113]  : Symbol not previously defined (PORTA)
+0007   0180           00029       clrf      PORTA
+Error[113]  : Symbol not previously defined (PORTB)
+0008   0180           00030       clrf      PORTB
+                      00031                          
+0009   3040           00032       movlw     init_shift_val
+000A   00A1           00033       movwf     shifting_value
+                      00034       
+Error[113]  : Symbol not previously defined (PORTA)
+000B   1400           00035       bsf       PORTA, 0x00             ; initialize reading data from shift register
+                      00036       
+                      00037       ; read the first bit from shift register, to define which screen should be used to display data
+Error[113]  : Symbol not previously defined (PORTA)
+000C   1900           00038       btfsc     PORTA, 0x02
+000D   2???           00039       goto      RIGHT_SCREEN
+000E                  00040 LEFT_SCREEN:
+MPASM 5.71                           LB5.ASM   3-13-2017  19:16:37         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Error[113]  : Symbol not previously defined (PORTA)
+000E   1580           00041       bsf       PORTA, 0x03             ; L bit = 0
+000F   2???           00042       goto      SHIFTING
+0010                  00043 RIGHT_SCREEN:
+Error[113]  : Symbol not previously defined (PORTA)
+0010   1600           00044       bsf       PORTA, 0x04             ; L bit = 1
+0011                  00045 SHIFTING:
+0011   0AA0           00046       incf      count, F
+Error[113]  : Symbol not previously defined (PORTA)
+0012   1480           00047       bsf       PORTA, 0x01             ; start receiving bit from shift register
+                      00048       
+                      00049       ; modify the PORTB value according to the received bit
+Error[113]  : Symbol not previously defined (PORTB)
+0013   0800           00050       movf      PORTB, W
+Error[113]  : Symbol not previously defined (PORTA)
+0014   1D00           00051       btfss     PORTA, 0x02
+0015   0721           00052       addwf     shifting_value, W       ; received 1
+Error[113]  : Symbol not previously defined (PORTB)
+0016   0080           00053       movwf     PORTB                   ; received 0
+                      00054       
+                      00055       ; shifting_value is modified to be used with the next bit
+Error[113]  : Symbol not previously defined (STATUS)
+Error[113]  : Symbol not previously defined (C)
+0017   1000           00056       bcf       STATUS, C               ; C bit is nulled, so it is not pushed into the shifting_value d
+                            uring the shift
+0018   0CA1           00057       rrf       shifting_value, F
+                      00058                  
+Error[113]  : Symbol not previously defined (PORTA)
+0019   1080           00059       bcf       PORTA, 0x01             ; bit is received
+001A   0820           00060       movf      count, W
+001B   3A07           00061       xorlw     0x07                    ; checking the loop overflow, we are reading only 7 bits
+Error[113]  : Symbol not previously defined (STATUS)
+Error[113]  : Symbol not previously defined (Z)
+001C   1C00           00062       btfss     STATUS, Z
+001D   2???           00063       goto      SHIFTING
+                      00064       
+001E   2???           00065       call      DELAY                   ; delay, to stop screen from flashing
+001F   2???           00066       goto      START_READ
+                      00067       
+                      00068 ;-----------------------------
+                      00069 ;       Crazy Delay
+                      00070 ; - expects nothing
+                      00071 ; - returns nothing
+                      00072 ;-----------------------------
+0020                  00073 DELAY: 
+0020   307D           00074         movlw   0x7D            ; (1 MHz clock)
+0021   00A2           00075         movwf   count1
+0022                  00076 DELAY_OUTER:    
+0022   3063           00077         movlw   0x63
+0023   00A3           00078         movwf   counta
+0024   3001           00079         movlw   0x01
+0025   00A4           00080         movwf   countb
+0026                  00081 DELAY_INNER:
+MPASM 5.71                           LB5.ASM   3-13-2017  19:16:37         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0026   0BA3           00082         decfsz  counta, F
+0027   2???           00083         goto    DELAY_INNER
+0028   0BA4           00084         decfsz  countb, F
+0029   2???           00085         goto    DELAY_INNER
+                      00086        
+002A   0BA2           00087         decfsz  count1, F
+002B   2???           00088         goto    DELAY_OUTER
+002C   3400           00089         retlw   0x00     
+                      00090 
+                      00091 ;====================================================================
+002D                  00092 FINISH:
+                      00093 
+Message[303]: Program word too large.  Truncated to core size. (FF18)
+3F18                  00094         end
+MPASM 5.71                           LB5.ASM   3-13-2017  19:16:37         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DELAY                             00000020
+DELAY_INNER                       00000026
+DELAY_OUTER                       00000022
+FINISH                            0000002D
+LEFT_SCREEN                       0000000E
+RIGHT_SCREEN                      00000010
+SHIFTING                          00000011
+START_READ                        00000006
+Start                             00000000
+__16F84A                          00000001
+count                             00000020
+count1                            00000022
+counta                            00000023
+countb                            00000024
+init_shift_val                    00000040
+shifting_value                    00000021
+trisa_all                         00000004
+trisb_all                         00000000
+
+Errors   :    21
+Warnings :     2 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+
