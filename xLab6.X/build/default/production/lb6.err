@@ -1,3 +1,4 @@
 Message[303] E:\UNIVERSITY\XLAB6.X\LB6.ASM 2 : Program word too large.  Truncated to core size. (FF18)
-Message[302] E:\UNIVERSITY\XLAB6.X\LB6.ASM 19 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[303] E:\UNIVERSITY\XLAB6.X\LB6.ASM 111 : Program word too large.  Truncated to core size. (FF18)
+Message[302] E:\UNIVERSITY\XLAB6.X\LB6.ASM 29 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 211 : Using default destination of 1 (file).
+Message[303] E:\UNIVERSITY\XLAB6.X\LB6.ASM 222 : Program word too large.  Truncated to core size. (FF18)
