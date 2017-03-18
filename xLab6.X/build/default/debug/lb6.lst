@@ -1,4 +1,4 @@
-MPASM 5.71                           LB6.ASM   3-16-2017  1:56:12         PAGE  1
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -24,7 +24,7 @@ Message[303]: Program word too large.  Truncated to core size. (FF18)
   00000003            00017 n       set     .3
   0000000A            00018 flag    set     0xA
   00000019            00019 elem    equ     0x19
-                      00020 
+  00000029            00020 lastElem        equ     0x29
                       00021         org 0
                       00022 
 0000   1683           00023         bsf     status,5
@@ -46,249 +46,332 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 000D   00A0           00038         movwf   num1
 000E   3004           00039         movlw   .4
 000F   00A1           00040         movwf   num2
-0010   3003           00041         movlw   .3
+0010   3005           00041         movlw   .5
 0011   00A2           00042         movwf   num3
-                      00043 
-                      00044 
-0012   1006           00045 Column1 bcf     portb,0
-0013   1486           00046         bsf     portb,1
-0014   1506           00047         bsf     portb,2 
-0015   1986           00048 Check1  btfsc   portb,3
-0016   2???           00049         goto    Check4
-                      00050 
-0017   3003           00051         movlw   .3
-MPASM 5.71                           LB6.ASM   3-16-2017  1:56:12         PAGE  2
+0012   3000           00043         movlw   .0
+0013   00A9           00044         movwf   lastElem
+                      00045 
+0014   1006           00046 Column1 bcf     portb,0
+0015   1486           00047         bsf     portb,1
+0016   1506           00048         bsf     portb,2 
+                      00049 
+0017   1986           00050 Check1  btfsc   portb,3
+0018   2???           00051         goto    Check4
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0018   0099           00052         movwf   elem
-0019   0085           00053         movwf   porta
-001A   180A           00054         btfsc   flag,0
-001B   2???           00055         goto    write
-                      00056                         
-001C   1A06           00057 Check4  btfsc   portb,4
-001D   2???           00058         goto    Check7
+                      00052 
+0019   3003           00053         movlw   .3
+001A   0099           00054         movwf   elem
+                      00055 
+001B   0629           00056         xorwf   lastElem,0
+001C   1903           00057         btfsc   status,2
+001D   2???           00058         goto    Check4
                       00059 
-001E   3006           00060         movlw   .6
-001F   0099           00061         movwf   elem
-0020   0085           00062         movwf   porta
-0021   180A           00063         btfsc   flag,0
-0022   2???           00064         goto    write
-                      00065                         
-0023   1A86           00066 Check7  btfsc   portb,5
-0024   2???           00067         goto    Check11
-                      00068 
-0025   3009           00069         movlw   .9
-0026   0099           00070         movwf   elem
-0027   0085           00071         movwf   porta
-0028   180A           00072         btfsc   flag,0
-0029   2???           00073         goto    write
-                      00074                 
-002A   1B06           00075 Check11 btfsc   portb,6
-002B   2???           00076         goto    Column2
-                      00077 
-002C   300B           00078         movlw   .11
-002D   0099           00079         movwf   elem
-002E   0085           00080         movwf   porta
-002F   180A           00081         btfsc   flag,0
-0030   2???           00082         goto    write
-                      00083                                 
-0031   1406           00084 Column2 bsf     portb,0
-0032   1086           00085         bcf     portb,1
-0033   1506           00086         bsf     portb,2
-                      00087                         
-0034   1986           00088 Check2  btfsc   portb,3
-0035   2???           00089         goto    Check5
-                      00090 
-0036   3002           00091         movlw   .2
-0037   0099           00092         movwf   elem
-0038   0085           00093         movwf   porta
-0039   180A           00094         btfsc   flag,0
-003A   2???           00095         goto    write
-                      00096                         
-003B   1A06           00097 Check5  btfsc   portb,4
-003C   2???           00098         goto    Check8
-                      00099 
-003D   3005           00100         movlw   .5
-003E   0099           00101         movwf   elem
-003F   0085           00102         movwf   porta
-0040   180A           00103         btfsc   flag,0
-0041   2???           00104         goto    write
-MPASM 5.71                           LB6.ASM   3-16-2017  1:56:12         PAGE  3
+001E   0085           00060         movwf   porta
+001F   0819           00061         movf    elem,0
+0020   00A9           00062         movwf   lastElem
+                      00063 
+0021   180A           00064         btfsc   flag,0
+0022   2???           00065         goto    write
+                      00066                         
+0023   1A06           00067 Check4  btfsc   portb,4
+0024   2???           00068         goto    Check7
+                      00069 
+0025   3006           00070         movlw   .6
+0026   0099           00071         movwf   elem
+0027   0629           00072         xorwf   lastElem,0
+0028   1903           00073         btfsc   status,2
+0029   2???           00074         goto    Check7
+                      00075 
+002A   0085           00076         movwf   porta
+002B   0819           00077         movf    elem,0
+002C   00A9           00078         movwf   lastElem
+                      00079 
+002D   180A           00080         btfsc   flag,0
+002E   2???           00081         goto    write
+                      00082                         
+002F   1A86           00083 Check7  btfsc   portb,5
+0030   2???           00084         goto    Check11
+                      00085 
+0031   3009           00086         movlw   .9
+0032   0099           00087         movwf   elem
+0033   0629           00088         xorwf   lastElem,0
+0034   1903           00089         btfsc   status,2
+0035   2???           00090         goto    Check11
+                      00091 
+0036   0085           00092         movwf   porta
+0037   0819           00093         movf    elem,0
+0038   00A9           00094         movwf   lastElem
+                      00095 
+0039   180A           00096         btfsc   flag,0
+003A   2???           00097         goto    write
+                      00098                 
+003B   1B06           00099 Check11 btfsc   portb,6
+003C   2???           00100         goto    Column2
+                      00101 
+003D   300B           00102         movlw   .11
+003E   0099           00103         movwf   elem
+003F   0629           00104         xorwf   lastElem,0
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00105                         
-0042   1A86           00106 Check8  btfsc   portb,5
-0043   2???           00107         goto    Check12
-                      00108 
-0044   3008           00109         movlw   .8
-0045   0099           00110         movwf   elem
-0046   0085           00111         movwf   porta
-0047   180A           00112         btfsc   flag,0
-0048   2???           00113         goto    write
-                      00114                 
-0049   1B06           00115 Check12 btfsc   portb,6
-004A   2???           00116         goto    Column3
-                      00117 
-004B   3000           00118         movlw   .0
-004C   0085           00119         movwf   porta
-004D   3000           00120         movlw   .0
-004E   008A           00121         movwf   flag
-                      00122 
-004F   1406           00123 Column3 bsf     portb,0
-0050   1486           00124         bsf     portb,1
-0051   1106           00125         bcf     portb,2
-                      00126                         
-0052   1986           00127 Check3  btfsc   portb,3
-0053   2???           00128         goto    Check6
-                      00129 
-0054   3001           00130         movlw   .1
-0055   0099           00131         movwf   elem
-0056   0085           00132         movwf   porta
-0057   180A           00133         btfsc   flag,0
-0058   2???           00134         goto    write
-                      00135                         
-0059   1A06           00136 Check6  btfsc   portb,4
-005A   2???           00137         goto    Check9
-                      00138 
-005B   3004           00139         movlw   .4
-005C   0099           00140         movwf   elem
-005D   0085           00141         movwf   porta
-005E   180A           00142         btfsc   flag,0
-005F   2???           00143         goto    write
-                      00144                         
-0060   1A86           00145 Check9  btfsc   portb,5
-0061   2???           00146         goto    Check13
+0040   1903           00105         btfsc   status,2
+0041   2???           00106         goto    Column2
+                      00107 
+0042   0085           00108         movwf   porta
+0043   0819           00109         movf    elem,0
+0044   00A9           00110         movwf   lastElem
+                      00111 
+0045   180A           00112         btfsc   flag,0
+0046   2???           00113         goto    write
+                      00114                                 
+0047   1406           00115 Column2 bsf     portb,0
+0048   1086           00116         bcf     portb,1
+0049   1506           00117         bsf     portb,2
+                      00118                         
+004A   1986           00119 Check2  btfsc   portb,3
+004B   2???           00120         goto    Check5
+                      00121 
+004C   3002           00122         movlw   .2
+004D   0099           00123         movwf   elem
+004E   0629           00124         xorwf   lastElem,0
+004F   1903           00125         btfsc   status,2
+0050   2???           00126         goto    Check5
+                      00127 
+0051   0085           00128         movwf   porta
+0052   0819           00129         movf    elem,0
+0053   00A9           00130         movwf   lastElem
+                      00131 
+0054   180A           00132         btfsc   flag,0
+0055   2???           00133         goto    write
+                      00134                         
+0056   1A06           00135 Check5  btfsc   portb,4
+0057   2???           00136         goto    Check8
+                      00137 
+0058   3005           00138         movlw   .5
+0059   0099           00139         movwf   elem
+005A   0629           00140         xorwf   lastElem,0
+005B   1903           00141         btfsc   status,2
+005C   2???           00142         goto    Check8
+                      00143 
+005D   0085           00144         movwf   porta
+005E   0819           00145         movf    elem,0
+005F   00A9           00146         movwf   lastElem
                       00147 
-0062   3007           00148         movlw   .7
-0063   0099           00149         movwf   elem
-0064   0085           00150         movwf   porta
-0065   180A           00151         btfsc   flag,0
-0066   2???           00152         goto    write
-                      00153                 
-0067   1B06           00154 Check13 btfsc   portb,6
-0068   2???           00155         goto    Column1
-                      00156 
-0069   300C           00157         movlw   0xC
-MPASM 5.71                           LB6.ASM   3-16-2017  1:56:12         PAGE  4
+0060   180A           00148         btfsc   flag,0
+0061   2???           00149         goto    write
+                      00150                         
+0062   1A86           00151 Check8  btfsc   portb,5
+0063   2???           00152         goto    Check12
+                      00153 
+0064   3008           00154         movlw   .8
+0065   0099           00155         movwf   elem
+0066   0629           00156         xorwf   lastElem,0
+0067   1903           00157         btfsc   status,2
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-006A   0085           00158         movwf   porta
-006B   3001           00159         movlw   .1
-006C   008A           00160         movwf   flag
-                      00161                 
-006D   2???           00162         goto    Column1
+0068   2???           00158         goto    Check12
+                      00159 
+0069   0085           00160         movwf   porta
+006A   0819           00161         movf    elem,0
+006B   00A9           00162         movwf   lastElem
                       00163 
-006E                  00164 true
-006E   300A           00165         movlw   0xA
-006F   0085           00166         movwf   porta
-0070   018A           00167         clrf    flag
-0071   0189           00168         clrf    offset
-0072   2???           00169         goto    Column1
-                      00170 
-0073                  00171 false
-0073   300D           00172         movlw   0xD
-0074   0085           00173         movwf   porta
-0075   018A           00174         clrf    flag
-0076   0189           00175         clrf    offset
-0077   2???           00176         goto    Column1
-                      00177 
-0078                  00178 write   
-0078   1586           00179         bsf     portb,3
-0079   1606           00180         bsf     portb,4
-007A   1686           00181         bsf     portb,5
-007B   1706           00182         bsf     portb,6
-007C   0819           00183         movf    elem,0
-007D   0809           00184         movf    offset,0
-007E   3E30           00185         addlw   c_adr
-007F   0084           00186         movwf   fsr
-0080   0819           00187         movf    elem,0
-0081   0080           00188         movwf   indf
-                      00189 
-0082   0A89           00190         INCF    offset,0x1
-0083   3003           00191         MOVLW   n     
-0084   0209           00192         SUBWF   offset,0   
-0085   1C03           00193         BTFSS   status,0  
-0086   2???           00194         GOTO    Column1   
-0087   2???           00195         goto    check
-                      00196 
-0088                  00197 check
-0088   0189           00198         clrf    offset
-0089                  00199 next
-0089   0809           00200         movf    offset,0        
-008A   3E20           00201         addlw   c_pass          
-008B   0084           00202         movwf   fsr             
-008C   0800           00203         movf    indf,0          
-008D   0099           00204         movwf   elem
-                      00205 
-008E   0809           00206         movf    offset,0        
-008F   3E30           00207         addlw   c_adr           
-0090   0084           00208         movwf   fsr             
-0091   0800           00209         movf    indf,0          
-                      00210         
-MPASM 5.71                           LB6.ASM   3-16-2017  1:56:12         PAGE  5
+006C   180A           00164         btfsc   flag,0
+006D   2???           00165         goto    write
+                      00166                 
+006E   1B06           00167 Check12 btfsc   portb,6
+006F   2???           00168         goto    Column3
+                      00169 
+0070   3000           00170         movlw   .0
+0071   0629           00171         xorwf   lastElem,0
+0072   1903           00172         btfsc   status,2
+0073   2???           00173         goto    Column3
+                      00174 
+0074   0085           00175         movwf   porta
+0075   0819           00176         movf    elem,0
+0076   00A9           00177         movwf   lastElem
+                      00178 
+0077   180A           00179         btfsc   flag,0
+0078   2???           00180         goto    write
+                      00181 
+0079   1406           00182 Column3 bsf     portb,0
+007A   1486           00183         bsf     portb,1
+007B   1106           00184         bcf     portb,2
+                      00185                         
+007C   1986           00186 Check3  btfsc   portb,3
+007D   2???           00187         goto    Check6
+                      00188 
+007E   3001           00189         movlw   .1
+007F   0099           00190         movwf   elem
+0080   0629           00191         xorwf   lastElem,0
+0081   1903           00192         btfsc   status,2
+0082   2???           00193         goto    Check6
+                      00194 
+0083   0085           00195         movwf   porta
+0084   0819           00196         movf    elem,0
+0085   00A9           00197         movwf   lastElem
+                      00198 
+0086   180A           00199         btfsc   flag,0
+0087   2???           00200         goto    write
+                      00201                         
+0088   1A06           00202 Check6  btfsc   portb,4
+0089   2???           00203         goto    Check9
+                      00204 
+008A   3004           00205         movlw   .4
+008B   0099           00206         movwf   elem
+008C   0629           00207         xorwf   lastElem,0
+008D   1903           00208         btfsc   status,2
+008E   2???           00209         goto    Check9
+                      00210 
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
+008F   0085           00211         movwf   porta
+0090   0819           00212         movf    elem,0
+0091   00A9           00213         movwf   lastElem
+                      00214 
+0092   180A           00215         btfsc   flag,0
+0093   2???           00216         goto    write
+                      00217                         
+0094   1A86           00218 Check9  btfsc   portb,5
+0095   2???           00219         goto    Check13
+                      00220 
+0096   3007           00221         movlw   .7
+0097   0099           00222         movwf   elem
+0098   0629           00223         xorwf   lastElem,0
+0099   1903           00224         btfsc   status,2
+009A   2???           00225         goto    Check13
+                      00226 
+009B   0085           00227         movwf   porta
+009C   0819           00228         movf    elem,0
+009D   00A9           00229         movwf   lastElem
+                      00230 
+009E   180A           00231         btfsc   flag,0
+009F   2???           00232         goto    write
+                      00233                 
+00A0   1B06           00234 Check13 btfsc   portb,6
+00A1   2???           00235         goto    Column1
+                      00236 
+00A2   300C           00237         movlw   0xC
+00A3   0085           00238         movwf   porta
+00A4   3001           00239         movlw   .1
+00A5   008A           00240         movwf   flag
+                      00241                 
+00A6   2???           00242         goto    Column1
+                      00243 
+00A7                  00244 true
+00A7   300A           00245         movlw   0xA
+00A8   0085           00246         movwf   porta
+00A9   018A           00247         clrf    flag
+00AA   0189           00248         clrf    offset
+00AB   2???           00249         goto    Column1
+                      00250 
+00AC                  00251 false
+00AC   300D           00252         movlw   0xD
+00AD   0085           00253         movwf   porta
+00AE   018A           00254         clrf    flag
+00AF   0189           00255         clrf    offset
+00B0   2???           00256         goto    Column1
+                      00257 
+00B1                  00258 write   
+00B1   0819           00259         movf    elem,0
+00B2   0809           00260         movf    offset,0
+00B3   3E30           00261         addlw   c_adr
+00B4   0084           00262         movwf   fsr
+00B5   0819           00263         movf    elem,0
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00B6   0080           00264         movwf   indf
+                      00265 
+00B7   0A89           00266         INCF    offset,0x1
+00B8   3003           00267         MOVLW   n     
+00B9   0209           00268         SUBWF   offset,0   
+00BA   1C03           00269         BTFSS   status,0  
+00BB   2???           00270         GOTO    Column1   
+00BC   2???           00271         goto    check
+                      00272 
+00BD                  00273 check
+00BD   0189           00274         clrf    offset
+00BE                  00275 next
+00BE   0809           00276         movf    offset,0        
+00BF   3E20           00277         addlw   c_pass          
+00C0   0084           00278         movwf   fsr             
+00C1   0800           00279         movf    indf,0          
+00C2   0099           00280         movwf   elem
+                      00281 
+00C3   0809           00282         movf    offset,0        
+00C4   3E30           00283         addlw   c_adr           
+00C5   0084           00284         movwf   fsr             
+00C6   0800           00285         movf    indf,0          
+                      00286         
 Message[305]: Using default destination of 1 (file).
-0092   0699           00211         xorwf   elem
-0093   1D03           00212         btfss   status,2
-0094   2???           00213         goto    false
-                      00214         
-0095   0A89           00215         INCF    offset,0x1
-0096   3003           00216         MOVLW   n     
-0097   0209           00217         SUBWF   offset,0   
-0098   1C03           00218         BTFSS   status,0  
-0099   2???           00219         GOTO    Column1   
-009A   2???           00220         goto    true
-                      00221 
+00C7   0699           00287         xorwf   elem
+00C8   1D03           00288         btfss   status,2
+00C9   2???           00289         goto    false
+                      00290         
+00CA   0A89           00291         INCF    offset,0x1
+00CB   3003           00292         MOVLW   n     
+00CC   0209           00293         SUBWF   offset,0   
+00CD   1C03           00294         BTFSS   status,0  
+00CE   2???           00295         GOTO    next   
+00CF   2???           00296         goto    true
+                      00297 
 Message[303]: Program word too large.  Truncated to core size. (FF18)
-3F18                  00222         end
-MPASM 5.71                           LB6.ASM   3-16-2017  1:56:12         PAGE  6
+3F18                  00298         end
+MPASM 5.71                           LB6.ASM   3-18-2017  15:07:32         PAGE  7
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-Check1                            00000015
-Check11                           0000002A
-Check12                           00000049
-Check13                           00000067
-Check2                            00000034
-Check3                            00000052
-Check4                            0000001C
-Check5                            0000003B
-Check6                            00000059
-Check7                            00000023
-Check8                            00000042
-Check9                            00000060
-Column1                           00000012
-Column2                           00000031
-Column3                           0000004F
+Check1                            00000017
+Check11                           0000003B
+Check12                           0000006E
+Check13                           000000A0
+Check2                            0000004A
+Check3                            0000007C
+Check4                            00000023
+Check5                            00000056
+Check6                            00000088
+Check7                            0000002F
+Check8                            00000062
+Check9                            00000094
+Column1                           00000014
+Column2                           00000047
+Column3                           00000079
 OPTION_REG                        00000081
 __16F84A                          00000001
 __DEBUG                           
 __MPLAB_DEBUGGER_SIMULATOR        1
 c_adr                             00000030
 c_pass                            00000020
-check                             00000088
+check                             000000BD
 elem                              00000019
-false                             00000073
+false                             000000AC
 flag                              0000000A
 fsr                               00000004
 indf                              00000000
+lastElem                          00000029
 n                                 00000003
-next                              00000089
+next                              000000BE
 num1                              00000020
 num2                              00000021
 num3                              00000022
@@ -298,8 +381,8 @@ portb                             00000006
 status                            00000003
 trisa                             00000005
 trisb                             00000006
-true                              0000006E
-write                             00000078
+true                              000000A7
+write                             000000B1
 
 Errors   :     0
 Warnings :     0 reported,     0 suppressed

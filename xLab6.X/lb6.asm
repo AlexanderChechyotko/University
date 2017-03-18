@@ -17,7 +17,7 @@ offset	equ	0x09
 n	set	.3
 flag	set	0xA
 elem	equ	0x19
-
+lastElem	equ	0x29
 	org 0
 
 	bsf	status,5
@@ -38,18 +38,28 @@ elem	equ	0x19
 	movwf	num1
 	movlw	.4
 	movwf	num2
-	movlw	.3
+	movlw	.5
 	movwf	num3
+	movlw	.0
+	movwf	lastElem
 
 Column1	bcf	portb,0
 	bsf	portb,1
 	bsf	portb,2	
+
 Check1	btfsc	portb,3
 	goto	Check4
 
 	movlw 	.3
 	movwf	elem
 	movwf	porta
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check4
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 			
@@ -59,6 +69,14 @@ Check4	btfsc	portb,4
 	movlw	.6
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check7
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 			
@@ -68,6 +86,14 @@ Check7	btfsc	portb,5
 	movlw	.9
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check11
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 		
@@ -77,6 +103,14 @@ Check11	btfsc	portb,6
 	movlw	.11
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Column2
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 				
@@ -90,6 +124,14 @@ Check2	btfsc	portb,3
 	movlw 	.2
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check5
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 			
@@ -99,6 +141,14 @@ Check5	btfsc	portb,4
 	movlw	.5
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check8
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 			
@@ -108,6 +158,14 @@ Check8	btfsc	portb,5
 	movlw	.8
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check12
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 		
@@ -116,8 +174,15 @@ Check12	btfsc	portb,6
 
 	movlw	.0
 	movwf	porta
-	movlw	.0
-	movwf	flag
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Column3
+
+	movf	elem,0
+	movwf	lastElem
+
+	btfsc	flag,0
+	goto	write
 
 Column3	bsf	portb,0
 	bsf	portb,1
@@ -129,6 +194,14 @@ Check3	btfsc	portb,3
 	movlw 	.1
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check6
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 			
@@ -138,6 +211,14 @@ Check6	btfsc	portb,4
 	movlw	.4
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check9
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 			
@@ -147,6 +228,14 @@ Check9	btfsc	portb,5
 	movlw	.7
 	movwf	elem
 	movwf	porta
+
+	xorwf	lastElem,0
+	btfsc	status,2
+	goto	Check13
+
+	movf	elem,0
+	movwf	lastElem
+
 	btfsc	flag,0
 	goto	write
 		
@@ -211,7 +300,7 @@ next
 	MOVLW 	n     
 	SUBWF 	offset,0   
 	BTFSS 	status,0  
-	GOTO 	Column1   
+	GOTO 	next   
 	goto	true
 
 	end
