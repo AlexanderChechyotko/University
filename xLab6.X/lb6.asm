@@ -41,7 +41,6 @@ elem	equ	0x19
 	movlw	.3
 	movwf	num3
 
-
 Column1	bcf	portb,0
 	bsf	portb,1
 	bsf	portb,2	
@@ -176,10 +175,6 @@ false
 	goto	Column1
 
 write	
-	bsf	portb,3
-	bsf	portb,4
-	bsf	portb,5
-	bsf	portb,6
 	movf	elem,0
 	movf 	offset,0
 	addlw 	c_adr

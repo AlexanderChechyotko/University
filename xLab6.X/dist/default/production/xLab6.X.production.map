@@ -1,11 +1,11 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Thu Mar 16 01:56:23 2017
+Linker Map File - Created Sat Mar 18 11:50:58 2017
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
-                   .org_0       code   0x000000    program   0x000136
-                   .cinit    romdata   0x00009b    program   0x000004
+                   .org_0       code   0x000000    program   0x00012e
+                   .cinit    romdata   0x000097    program   0x000004
 .config_2007_BUILD/DEFAULT/PRODUCTION/LB6.O       code   0x002007    program   0x000002
 
 
@@ -13,9 +13,9 @@ Linker Map File - Created Thu Mar 16 01:56:23 2017
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x00009c      
+                            0x000000    0x000098      
                             0x002007    0x002007      
-            158 out of 1094 program addresses used, program memory utilization is 14%
+            154 out of 1094 program addresses used, program memory utilization is 14%
 
 
 
@@ -37,9 +37,9 @@ Linker Map File - Created Thu Mar 16 01:56:23 2017
                   Column1   0x000012    program     static E:\University\xLab6.X\lb6.asm
                   Column2   0x000031    program     static E:\University\xLab6.X\lb6.asm
                   Column3   0x00004f    program     static E:\University\xLab6.X\lb6.asm
-                    check   0x000088    program     static E:\University\xLab6.X\lb6.asm
+                    check   0x000084    program     static E:\University\xLab6.X\lb6.asm
                     false   0x000073    program     static E:\University\xLab6.X\lb6.asm
-                     next   0x000089    program     static E:\University\xLab6.X\lb6.asm
+                     next   0x000085    program     static E:\University\xLab6.X\lb6.asm
                      true   0x00006e    program     static E:\University\xLab6.X\lb6.asm
                     write   0x000078    program     static E:\University\xLab6.X\lb6.asm
 
@@ -66,7 +66,7 @@ Linker Map File - Created Thu Mar 16 01:56:23 2017
                      true   0x00006e    program     static E:\University\xLab6.X\lb6.asm
                     false   0x000073    program     static E:\University\xLab6.X\lb6.asm
                     write   0x000078    program     static E:\University\xLab6.X\lb6.asm
-                    check   0x000088    program     static E:\University\xLab6.X\lb6.asm
-                     next   0x000089    program     static E:\University\xLab6.X\lb6.asm
+                    check   0x000084    program     static E:\University\xLab6.X\lb6.asm
+                     next   0x000085    program     static E:\University\xLab6.X\lb6.asm
 
 
