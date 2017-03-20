@@ -1,11 +1,11 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Sat Mar 18 15:15:12 2017
+Linker Map File - Created Mon Mar 20 18:32:48 2017
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
-                   .org_0       code   0x000000    program   0x0001a0
-                   .cinit    romdata   0x0000d0    program   0x000004
+                   .org_0       code   0x000000    program   0x00018e
+                   .cinit    romdata   0x0000c7    program   0x000004
 .config_2007_BUILD/DEFAULT/PRODUCTION/LB6.O       code   0x002007    program   0x000002
 
 
@@ -13,60 +13,88 @@ Linker Map File - Created Sat Mar 18 15:15:12 2017
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x0000d1      
+                            0x000000    0x0000c8      
                             0x002007    0x002007      
-            211 out of 1094 program addresses used, program memory utilization is 19%
+            202 out of 1094 program addresses used, program memory utilization is 18%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                   Check1   0x000017    program     static E:\University\xLab6.X\lb6.asm
-                  Check11   0x00003b    program     static E:\University\xLab6.X\lb6.asm
-                  Check12   0x00006e    program     static E:\University\xLab6.X\lb6.asm
-                  Check13   0x0000a0    program     static E:\University\xLab6.X\lb6.asm
-                   Check2   0x00004a    program     static E:\University\xLab6.X\lb6.asm
-                   Check3   0x00007c    program     static E:\University\xLab6.X\lb6.asm
-                   Check4   0x000023    program     static E:\University\xLab6.X\lb6.asm
-                   Check5   0x000056    program     static E:\University\xLab6.X\lb6.asm
-                   Check6   0x000088    program     static E:\University\xLab6.X\lb6.asm
-                   Check7   0x00002f    program     static E:\University\xLab6.X\lb6.asm
-                   Check8   0x000062    program     static E:\University\xLab6.X\lb6.asm
-                   Check9   0x000094    program     static E:\University\xLab6.X\lb6.asm
-                  Column1   0x000014    program     static E:\University\xLab6.X\lb6.asm
-                  Column2   0x000047    program     static E:\University\xLab6.X\lb6.asm
-                  Column3   0x000079    program     static E:\University\xLab6.X\lb6.asm
-                    check   0x0000bd    program     static E:\University\xLab6.X\lb6.asm
-                    false   0x0000ac    program     static E:\University\xLab6.X\lb6.asm
-                     next   0x0000be    program     static E:\University\xLab6.X\lb6.asm
-                     true   0x0000a7    program     static E:\University\xLab6.X\lb6.asm
-                    write   0x0000b1    program     static E:\University\xLab6.X\lb6.asm
+                    DELAY   0x000094    program     static E:\University\xLab6.X\lb6.asm
+                  Delay_0   0x000098    program     static E:\University\xLab6.X\lb6.asm
+                 END_PROG   0x0000c7    program     static E:\University\xLab6.X\lb6.asm
+                FORM_ADDR   0x000047    program     static E:\University\xLab6.X\lb6.asm
+                INIT_LOOP   0x000030    program     static E:\University\xLab6.X\lb6.asm
+                MAIN_LOOP   0x000034    program     static E:\University\xLab6.X\lb6.asm
+             MAIN_LOOPEND   0x000081    program     static E:\University\xLab6.X\lb6.asm
+            MEM_INIT_LOOP   0x00001a    program     static E:\University\xLab6.X\lb6.asm
+                  MULFUNC   0x000083    program     static E:\University\xLab6.X\lb6.asm
+                 MUL_LOOP   0x00008e    program     static E:\University\xLab6.X\lb6.asm
+              MUL_LOOPEND   0x000093    program     static E:\University\xLab6.X\lb6.asm
+                        P   0x000070    program     static E:\University\xLab6.X\lb6.asm
+              WRITE_OTHER   0x000025    program     static E:\University\xLab6.X\lb6.asm
+                        Z   0x00007e    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0035   0x000035    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_003A   0x00003a    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_003E   0x00003e    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0042   0x000042    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0056   0x000056    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_005F   0x00005f    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0062   0x000062    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0065   0x000065    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0068   0x000068    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_006A   0x00006a    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0085   0x000085    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0089   0x000089    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_008F   0x00008f    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0099   0x000099    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_009C   0x00009c    program     static E:\University\xLab6.X\lb6.asm
+                    check   0x0000b4    program     static E:\University\xLab6.X\lb6.asm
+                    false   0x0000a3    program     static E:\University\xLab6.X\lb6.asm
+                     next   0x0000b5    program     static E:\University\xLab6.X\lb6.asm
+                     true   0x00009e    program     static E:\University\xLab6.X\lb6.asm
+                    write   0x0000a8    program     static E:\University\xLab6.X\lb6.asm
 
 
 
                               Symbols - Sorted by Address
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                  Column1   0x000014    program     static E:\University\xLab6.X\lb6.asm
-                   Check1   0x000017    program     static E:\University\xLab6.X\lb6.asm
-                   Check4   0x000023    program     static E:\University\xLab6.X\lb6.asm
-                   Check7   0x00002f    program     static E:\University\xLab6.X\lb6.asm
-                  Check11   0x00003b    program     static E:\University\xLab6.X\lb6.asm
-                  Column2   0x000047    program     static E:\University\xLab6.X\lb6.asm
-                   Check2   0x00004a    program     static E:\University\xLab6.X\lb6.asm
-                   Check5   0x000056    program     static E:\University\xLab6.X\lb6.asm
-                   Check8   0x000062    program     static E:\University\xLab6.X\lb6.asm
-                  Check12   0x00006e    program     static E:\University\xLab6.X\lb6.asm
-                  Column3   0x000079    program     static E:\University\xLab6.X\lb6.asm
-                   Check3   0x00007c    program     static E:\University\xLab6.X\lb6.asm
-                   Check6   0x000088    program     static E:\University\xLab6.X\lb6.asm
-                   Check9   0x000094    program     static E:\University\xLab6.X\lb6.asm
-                  Check13   0x0000a0    program     static E:\University\xLab6.X\lb6.asm
-                     true   0x0000a7    program     static E:\University\xLab6.X\lb6.asm
-                    false   0x0000ac    program     static E:\University\xLab6.X\lb6.asm
-                    write   0x0000b1    program     static E:\University\xLab6.X\lb6.asm
-                    check   0x0000bd    program     static E:\University\xLab6.X\lb6.asm
-                     next   0x0000be    program     static E:\University\xLab6.X\lb6.asm
+            MEM_INIT_LOOP   0x00001a    program     static E:\University\xLab6.X\lb6.asm
+              WRITE_OTHER   0x000025    program     static E:\University\xLab6.X\lb6.asm
+                INIT_LOOP   0x000030    program     static E:\University\xLab6.X\lb6.asm
+                MAIN_LOOP   0x000034    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0035   0x000035    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_003A   0x00003a    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_003E   0x00003e    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0042   0x000042    program     static E:\University\xLab6.X\lb6.asm
+                FORM_ADDR   0x000047    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0056   0x000056    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_005F   0x00005f    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0062   0x000062    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0065   0x000065    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0068   0x000068    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_006A   0x00006a    program     static E:\University\xLab6.X\lb6.asm
+                        P   0x000070    program     static E:\University\xLab6.X\lb6.asm
+                        Z   0x00007e    program     static E:\University\xLab6.X\lb6.asm
+             MAIN_LOOPEND   0x000081    program     static E:\University\xLab6.X\lb6.asm
+                  MULFUNC   0x000083    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0085   0x000085    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0089   0x000089    program     static E:\University\xLab6.X\lb6.asm
+                 MUL_LOOP   0x00008e    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_008F   0x00008f    program     static E:\University\xLab6.X\lb6.asm
+              MUL_LOOPEND   0x000093    program     static E:\University\xLab6.X\lb6.asm
+                    DELAY   0x000094    program     static E:\University\xLab6.X\lb6.asm
+                  Delay_0   0x000098    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_0099   0x000099    program     static E:\University\xLab6.X\lb6.asm
+             _.org_0_009C   0x00009c    program     static E:\University\xLab6.X\lb6.asm
+                     true   0x00009e    program     static E:\University\xLab6.X\lb6.asm
+                    false   0x0000a3    program     static E:\University\xLab6.X\lb6.asm
+                    write   0x0000a8    program     static E:\University\xLab6.X\lb6.asm
+                    check   0x0000b4    program     static E:\University\xLab6.X\lb6.asm
+                     next   0x0000b5    program     static E:\University\xLab6.X\lb6.asm
+                 END_PROG   0x0000c7    program     static E:\University\xLab6.X\lb6.asm
 
 

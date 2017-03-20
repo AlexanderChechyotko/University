@@ -1,4 +1,8 @@
+Warning[205] E:\UNIVERSITY\XLAB6.X\LB6.ASM 1 : Found directive in column 1. (LIST)
 Message[303] E:\UNIVERSITY\XLAB6.X\LB6.ASM 2 : Program word too large.  Truncated to core size. (FF18)
-Message[302] E:\UNIVERSITY\XLAB6.X\LB6.ASM 29 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 295 : Using default destination of 1 (file).
-Message[303] E:\UNIVERSITY\XLAB6.X\LB6.ASM 306 : Program word too large.  Truncated to core size. (FF18)
+Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 116 : Using default destination of 1 (file).
+Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 217 : Using default destination of 1 (file).
+Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 222 : Using default destination of 1 (file).
+Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 230 : Using default destination of 1 (file).
+Message[305] E:\UNIVERSITY\XLAB6.X\LB6.ASM 299 : Using default destination of 1 (file).
+Message[303] E:\UNIVERSITY\XLAB6.X\LB6.ASM 312 : Program word too large.  Truncated to core size. (FF18)
